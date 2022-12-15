@@ -1,10 +1,12 @@
-/*const data = [
+/* Så här ser datan ut:
+const data = [
 	{
 		id: 1,
 		isDone: true,
 		description: 'Köpa presenter'
 	}
 ]*/
+
 // VARIABLES
 const addTodoButton = document.querySelector('#add-todo-button')
 const todoInput = document.querySelector('.form-container input')
@@ -16,6 +18,21 @@ const key = 'christmas-todo'
 let nextTodoId = 4
 
 
+// När appen startas
+// Hämta eventuell data från local storage
+let data = getFromLocalStorage()
+if (data) {
+	data.forEach(item => {
+		let todoElement = createTodoElement(item)
+		// console.log('todo element: ', todoElement)
+		todoList.appendChild(todoElement)
+	})
+} else {
+	data = []  // inga todo items
+}
+
+
+
 // EVENT LISTENERS
 addTodoButton.addEventListener('click', () => {
 	const valueFromUser = todoInput.value
@@ -24,10 +41,13 @@ addTodoButton.addEventListener('click', () => {
 		isDone: false,
 		description: valueFromUser
 	}
-	nextTodoId++
-	// console.log('New todo: ', newTodo)
+	nextTodoId++  // för att garantera unika id:n
+	
 	const element = createTodoElement(newTodo)
 	todoList.appendChild(element)
+
+	data.push(newTodo)
+	saveToLocalStorage(data)
 })
 function createTodoElement(newTodo) {
 	const element = document.createElement('li')
@@ -50,19 +70,10 @@ todoInput.addEventListener('keyup', event => {
 	} else {
 		addTodoButton.disabled = true
 	}
-	// console.log('Key press:', event.key, userText, event.target.value)
 })
 
-let maybeData = getFromLocalStorage()
-if( maybeData ) {
-	maybeData.forEach(item => {
-		let todoElement = createTodoElement(item)
-		// console.log('todo element: ', todoElement)
-		todoList.appendChild(todoElement)
-	})
-}
 
-
+// FUNCTIONS
 // returnerar undefined eller data
 function getFromLocalStorage() {
 	let maybeJson = localStorage.getItem(key)
@@ -83,7 +94,4 @@ function saveToLocalStorage(items) {
 	localStorage.setItem(key, json)
 }
 
-saveToLocalStorage([
-	{ id: 10, isDone: true, description: 'Be awesome' },
-	{ id: 11, isDone: false, description: 'Julbaket' }
-])
+// Utmaning: gör så att "isDone" status också sparas i localStorage!
