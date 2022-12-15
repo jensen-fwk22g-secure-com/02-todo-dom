@@ -25,12 +25,25 @@ addTodoButton.addEventListener('click', () => {
 	// console.log('New todo: ', newTodo)
 
 	const element = document.createElement('li')
+	const label = document.createElement('label')
 	const checkbox = document.createElement('input')
 	const span = document.createElement('span')
 	checkbox.type = 'checkbox'
 	span.innerText = newTodo.description
 
-	element.appendChild(checkbox)
-	element.appendChild(span)
+	label.appendChild(checkbox)
+	label.appendChild(span)
+	element.appendChild(label)
 	todoList.appendChild(element)
 })
+
+todoInput.addEventListener('keyup', event => {
+	let userText = todoInput.value
+	if( userText.length > 0 ) {
+		addTodoButton.disabled = false
+	} else {
+		addTodoButton.disabled = true
+	}
+	// console.log('Key press:', event.key, userText, event.target.value)
+})
+// keyDown, keyUp, keyPress ??

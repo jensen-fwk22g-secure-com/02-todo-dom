@@ -16,8 +16,12 @@ header {
 	color: #F4DF3F;
 	padding: 1em;
 	text-align: center;
-	font-size: 140%;
+	font-size: 170%;
 	font-weight: bold;
+}
+header h1 {
+	font-size: 1.7rem;
+	margin: 0;
 }
 main {
 	background-color: #48ee71;
@@ -29,4 +33,25 @@ main {
 }
 
 .form-container {}
-.todo-list {}
+.todo-list {
+	list-style: none;
+	padding: 0px;
+}
+
+.todo-list label {
+	user-select: none;
+	display: block;
+	padding: 0.5em 2em;
+}
+.todo-list label:hover {
+	cursor:pointer;
+}
+.todo-list>li:nth-child(2n) {
+	background-color: #7de898;
+}
+.todo-list>li:nth-child(2n + 1) {
+	background-color: #2daa4d;
+}
+button {
+	cursor: pointer;
+}
