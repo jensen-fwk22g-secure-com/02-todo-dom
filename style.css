@@ -1,0 +1,32 @@
+* {
+	box-sizing: border-box;
+	/* Tips för att felsöka: */
+	/* border: 2px dashed blue; */
+}
+body {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	/* body är flex-container för header och main */
+	min-height: 100vh;
+}
+header {
+	background-color: #C74329;
+	color: #F4DF3F;
+	padding: 1em;
+	text-align: center;
+	font-size: 140%;
+	font-weight: bold;
+}
+main {
+	background-color: #48ee71;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1em;
+}
+
+.form-container {}
+.todo-list {}
